@@ -54,16 +54,26 @@ class nickname_change:
         else:
             return f"There isn't {self.old}"
 
+class url_fetch:
+    def __init__(self,code):
+        self.code = code
+    def fetch(self):
+        for val in lst:
+            if self.code == val["code"]:
+                webbrowser.open(val["url"])
+                return f"url opened!"
+        else:
+            return f"{self.code} was not found!"
 
 
 #adding or removing the url
-ans1 = input("Do you want to enter a url or remove one?(add/remove)")
+ans1 = input("Do you want to enter a url or remove one?(add/remove/none)")
 ans_1 = ans1.lower()
 if ans_1 == "add" :
     ans_11 = "y"
     while ans_11 == "y" :
         url_name = input("Enter the url")
-        nickname = input("Enter the nickname")
+        nickname = input("Enter the nickname").lower()
         characters = string.ascii_letters + string.digits
         code = ""
         for _ in range(6) :
@@ -75,22 +85,58 @@ if ans_1 == "add" :
 elif ans_1 == "remove" :
     ans_22 = "y"
     while ans_22 == "y" :
-        nickname = input("Enter the nickname of the url")
+        nickname = input("Enter the nickname of the url").lower()
         url2= url_remove(nickname)
         print(url2.remove())
         anss = input("Do you want to remove another url too?*(y/n)")
         ans_22 = anss.lower()
+elif ans_1 == "none" :
+    print("neither added nor removed!")
 
 
 #changing the nickname
 ans2 = input("Do you want to change the nickname?(y/n)")
 ans_2 = ans2.lower()
-while ans2 == "y" :
-    in1 = input("Enter the nickname you want to change :")
-    in2 = input("Enter the new nickname :")
+while ans_2 == "y" :
+    in1 = input("Enter the nickname you want to change :").lower()
+    in2 = input("Enter the new nickname :").lower()
     ch = nickname_change(in1,in2)
     print(ch.change())
     ans2 = input("Do you want to change the nickname again?(y/n)")
     ans_2 = ans2.lower()
 
-#finding the code by nickname
+#fetching the code by nickname
+ans3 = input("Do you want to fetch the code?(y/n)")
+ans_3 = ans3.lower()
+while ans_3 == "y" :
+    in1 = input("Enter the nickname :").lower()
+    for val in lst:
+        if in1 == val["nickname"] :
+            print("The code for your url is :",val["code"])
+            in2 = input("Do you want to open the url?(y/n)").lower()
+            if in2 == "y" :
+                in3 = input("Enter your code here please :")
+                url_f = url_fetch(in3)
+                print(url_f.fetch())
+            else:
+                print("url not opened!")
+            break
+    else:
+        print("Nickname not found!")
+    ans3 = input("Do you want to fetch another code?(y/n)")
+    ans_3 = ans3.lower()
+
+
+with open("storage.txt","w") as f:
+    f.write(str(lst))
+
+with open("show.txt","w") as f :
+    f.write(f"{'':<50}{'YOUR CODE LIBRARY'}"+"\n")
+    f.write("\n")
+    f.write(f"{'S.No.':<8}{'Names':<35}{'Codes':<40}{'URL'}"+"\n")
+    i = 1
+    for val in lst:
+        f.write(f"{i:<8}{val['nickname']:<35}{val['code']:<40}{val['url']}"+"\n")
+        i += 1
+    f.write("\n")
+    f.write(f"{'':<50}{'Library ended here.'}"+"\n")
