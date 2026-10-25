@@ -2,6 +2,6 @@
 
 S.No.   Names                              Codes                                   URL
 1       youtube                            IL6eec                                  https://www.youtube.com
-2       messenger                          W0cGa2                                  https://www.messenger.com
+2       what's app                         cgMSjA                                  https://web.whatsapp.com
 
                                                   Library ended here.

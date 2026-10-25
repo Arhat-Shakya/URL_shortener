@@ -1,1 +1,1 @@
-[{'nickname': 'youtube', 'code': 'IL6eec', 'url': 'https://www.youtube.com'}, {'nickname': 'messenger', 'code': 'W0cGa2', 'url': 'https://www.messenger.com'}]
+[{'nickname': 'youtube', 'code': 'IL6eec', 'url': 'https://www.youtube.com'}, {'nickname': "what's app", 'code': 'cgMSjA', 'url': 'https://web.whatsapp.com'}]

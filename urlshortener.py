@@ -75,11 +75,17 @@ if ans_1 == "add" :
         url_name = input("Enter the url")
         nickname = input("Enter the nickname").lower()
         characters = string.ascii_letters + string.digits
-        code = ""
-        for _ in range(6) :
-            code += secrets.choice(characters)
-        url1 = url_input(url_name,nickname,code)
-        print(url1.input1())
+        def checking(i):
+            code = ""
+            for _ in range(i) :
+                code += secrets.choice(characters)
+            for val in lst:
+                if code == val["code"]:
+                    return checking(i)
+            else:
+                url1 = url_input(url_name,nickname,code)
+            print(url1.input1())
+        checking(6)
         anss = input("Do you want to enter a new url?(y/n)")
         ans_11 = anss.lower()
 elif ans_1 == "remove" :
